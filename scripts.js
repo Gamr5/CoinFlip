@@ -11,10 +11,6 @@ function run() {
 
 current = states[Math.floor(Math.random() * states.length)];
 
-if (streak == 0) {
-streakType = current
-streak = streakType + 1
-}
 
 
 
@@ -29,6 +25,13 @@ if (streak > 0) { //if the coin has already been fliped
         streakEnded = true
     }
 }
+
+if (streak == 0) {
+    streakType = current
+    streak = streak + 1
+    streakEnded = false
+    }
+    
 
 if (current == 0) {
     tranlatedType = "heads"
