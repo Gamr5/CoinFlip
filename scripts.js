@@ -5,7 +5,6 @@ var streakType = -1 //state of streak
 var result = document.getElementById("output")
 var last = -1
 var tranlatedType //translates steak type into english, instead of numbers.
-var streakEnded = Boolean
 
 function run() {
 
@@ -17,19 +16,16 @@ current = states[Math.floor(Math.random() * states.length)];
 if (streak > 0) { //if the coin has already been fliped
     if (streakType == current) { //if current is continuing the streak, add 1 to streak
         streak = streak  + 1
-        streakEnded = false
     }
-    if (streakType != current) {
-        streakType = -1
+if (streakType != current) {
+        streakType = current
         streak = 0
-        streakEnded = true
     }
 }
 
 if (streak == 0) {
     streakType = current
     streak = streak + 1
-    streakEnded = false
     }
     
 
@@ -39,5 +35,5 @@ if (current == 0) {
     tranlatedType = "tails"
 }
 
-result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Streak ended: ${streakEnded}<br>`
+result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}`
 }
