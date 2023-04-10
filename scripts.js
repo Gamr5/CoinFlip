@@ -33,7 +33,11 @@ function run() {
     tranlatedType = "tails";
   }
 
-  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}`;
+  if (streak > maxStreak) {
+    maxStreak = streak
+  }
+
+  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
 }
 function multiRun() {
 alert("Not funtional yet. If you want to have it added faster, code it yourself")
