@@ -5,7 +5,9 @@ var streakType = -1; //state of streak
 var result = document.getElementById("output");
 var last = -1;
 var tranlatedType; //translates steak type into english, instead of numbers.
-var maxStreak = 0
+var maxStreak = 0;
+var onRuns = 0;
+var maxRuns = 0;
 
 function run() {
   current = states[Math.floor(Math.random() * states.length)];
@@ -34,11 +36,47 @@ function run() {
   }
 
   if (streak > maxStreak) {
-    maxStreak = streak
+    maxStreak = streak;
   }
 
   result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
 }
+
+//multi-run
 function multiRun() {
-alert("Not funtional yet. If you want to have it added faster, code it yourself")
+  maxRuns = document.getElementById("times").value;
+  onRuns = 0;
+  while (onRuns < maxRuns) {
+    current = states[Math.floor(Math.random() * states.length)];
+
+    if (streak > 0) {
+      //if the coin has already been fliped
+      if (streakType == current) {
+        //if current is continuing the streak, add 1 to streak
+        streak = streak + 1;
+      }
+      if (streakType != current) {
+        streakType = current;
+        streak = 0;
+      }
+    }
+
+    if (streak == 0) {
+      streakType = current;
+      streak = streak + 1;
+    }
+
+    if (current == 0) {
+      tranlatedType = "heads";
+    } else if (current == 1) {
+      tranlatedType = "tails";
+    }
+
+    if (streak > maxStreak) {
+      maxStreak = streak;
+    }
+
+    result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
+    onRuns = onRuns + 1;
+  }
 }
