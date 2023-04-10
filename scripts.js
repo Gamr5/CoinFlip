@@ -8,6 +8,7 @@ var tranlatedType; //translates steak type into english, instead of numbers.
 var maxStreak = 0;
 var onRuns = 0;
 var maxRuns = 0;
+var odds = 1; //odds of getting that streak
 
 function run() {
   current = states[Math.floor(Math.random() * states.length)];
@@ -21,6 +22,9 @@ function run() {
     if (streakType != current) {
       streakType = current;
       streak = 0;
+      odds = 1;
+    } else {
+      odds = odds * 2
     }
   }
 
@@ -39,7 +43,7 @@ function run() {
     maxStreak = streak;
   }
 
-  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
+  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Odds of getting this streak: 1/${odds}`;
 }
 
 //multi-run
@@ -75,6 +79,8 @@ function multiRun() {
     if (streak > maxStreak) {
       maxStreak = streak;
     }
+
+
 
     result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
     onRuns = onRuns + 1;
