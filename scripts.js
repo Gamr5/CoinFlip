@@ -112,3 +112,20 @@ function multiRun() {
 
   result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Percentage of flips that were heads: ${flipPercentHeads}%<br>Percentage of flips that were tails: ${flipPercentTails}%`;
 }
+
+function resetStreak() {
+  if (confirm("Are you sure you want to reset your session best?")) {
+    maxStreak = 0
+    document.getElementById("reset-box").innerHTML = "Session best sucsessfully reset!"
+    document.getElementById("reset-box").classList = "green"
+    const myTimeout = setTimeout(clearAll, 3000, "reset-box");
+  } else {
+    document.getElementById("reset-box").innerHTML = "Session best reset canceled"
+    const myTimeout = setTimeout(clearAll, 3000, "reset-box");
+  }
+
+  function clearAll(id) {
+    document.getElementById(id).classList = ""
+    document.getElementById(id).innerHTML = ""
+  }
+}
