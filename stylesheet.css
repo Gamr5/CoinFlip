@@ -13,3 +13,11 @@ header {
 .red {
     color: red;
 }
+
+#versioninfo {
+    text-align: right;
+    vertical-align: middle;
+    position: absolute;
+    font-size: 10px;
+    color: grey;
+}
