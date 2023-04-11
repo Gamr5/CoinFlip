@@ -122,7 +122,7 @@ function resetStreak() {
   } else {
     document.getElementById("reset-box").innerHTML = "Session best reset canceled"
 
-document.getElementById("reset-box").classList = "green"
+document.getElementById("reset-box").classList = "red"
 
     const myTimeout = setTimeout(clearAll, 3000, "reset-box");
   }
