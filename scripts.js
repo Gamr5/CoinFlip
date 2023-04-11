@@ -121,6 +121,9 @@ function resetStreak() {
     const myTimeout = setTimeout(clearAll, 3000, "reset-box");
   } else {
     document.getElementById("reset-box").innerHTML = "Session best reset canceled"
+
+document.getElementById("reset-box").classList = "green"
+
     const myTimeout = setTimeout(clearAll, 3000, "reset-box");
   }
 
