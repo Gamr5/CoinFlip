@@ -9,6 +9,7 @@ var maxStreak = 0;
 var onRuns = 0;
 var maxRuns = 0;
 var odds = 1; //odds of getting that streak
+const flips = [];
 
 function run() {
   current = states[Math.floor(Math.random() * states.length)];
@@ -24,7 +25,7 @@ function run() {
       streak = 0;
       odds = 1;
     } else {
-      odds = odds * 2
+      odds = odds * 2;
     }
   }
 
@@ -48,6 +49,7 @@ function run() {
 
 //multi-run
 function multiRun() {
+  const flips = []
   maxRuns = document.getElementById("times").value;
   onRuns = 0;
   while (onRuns < maxRuns) {
@@ -79,10 +81,34 @@ function multiRun() {
     if (streak > maxStreak) {
       maxStreak = streak;
     }
-
-
-
-    result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}`;
+    flips.push(current);
     onRuns = onRuns + 1;
   }
+
+  var flipsLen = flips.length;
+  var flipsOn = 0;
+  var flipedHeads = 0;
+  var flipedTails = 0;
+  while (flipsOn < flipsLen) {
+    var flipsCheck = flips[flipsOn];
+    if (flipsCheck == 0) {
+      flipedHeads = flipedHeads + 1
+    } else if (flipsCheck == 1) {
+      flipedTails = flipedTails + 1
+    }
+
+    flipsOn = flipsOn + 1
+  }
+  if (flipedHeads > flipedTails || flipedHeads == flipedTails) {
+    var flipPercentHeads = flipedHeads/flipsLen * 100
+  }
+  if (flipedTails > flipedHeads) {
+    var flipPercentHeads = flipedTails/flipsLen * 100
+  }
+
+  var flipPercentTails = 100 - flipPercentHeads
+  flipPercentHeads = Math.round(flipPercentHeads * 100) / 100
+  flipPercentTails = Math.round(flipPercentTails * 100) / 100
+
+  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Percentage of flips that were heads: ${flipPercentHeads}%<br>Percentage of flips that were tails: ${flipPercentTails}%`;
 }
