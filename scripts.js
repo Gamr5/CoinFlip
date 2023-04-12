@@ -51,6 +51,9 @@ function run() {
 function multiRun() {
   const flips = []
   maxRuns = document.getElementById("times").value;
+  if (maxRuns == null || maxRuns == 0) {
+    result.innerHTML = "error: put a number in the multi run box"
+  } else {
   onRuns = 0;
   while (onRuns < maxRuns) {
     current = states[Math.floor(Math.random() * states.length)];
@@ -112,11 +115,12 @@ function multiRun() {
 
   result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Percentage of flips that were heads: ${flipPercentHeads}%<br>Percentage of flips that were tails: ${flipPercentTails}%`;
 }
+}
 
-function resetStreak() {
+function resetStreak() { //reseting streak
   if (confirm("Are you sure you want to reset your session best?")) {
     maxStreak = 0
-      result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Percentage of flips that were heads: ${flipPercentHeads}%<br>Percentage of flips that were tails: ${flipPercentTails}%`;
+      result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: none`;
     document.getElementById("reset-box").innerHTML = "Session best sucsessfully reset!"
     document.getElementById("reset-box").classList = "green"
     const myTimeout = setTimeout(clearAll, 3000, "reset-box");
