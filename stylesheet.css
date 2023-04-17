@@ -34,3 +34,7 @@ header {
     text-align: left;
     height: 48px;
 }
+
+#coin-img {
+    height: 64px;
+}
