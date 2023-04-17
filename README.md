@@ -9,9 +9,10 @@ Thank you for taking a look at my website's GitHub! This webiste was made by me 
 - [x] Add streak chance counter to single flip (Apr 10, 2023)
 - [x] Add option to flip multiple times (Apr 10, 2023)
 - [x] Improve option to flip multiple times (Apr 10, 2023)
-- [x] Link GitHub from website (Apr 12, 2023)
-- [ ] Save max streak in cookies (ETA: Apr 12 - Apr 16, 2023)
-- [ ] Add total coin flips in cookies (ETA: Apr 12 - Apr 16, 2023)
-- [ ] Add statistics Menu (ETA unknown)
-- [ ] Add more info button (ETA unknown)
-- [ ] Make website nicer with css (ETA unknown)
+- [x] Link GitHub from website
+- [ ] Improve proformance
+- [ ] Save max streak in cookies
+- [ ] Add total coin flips in cookies
+- [ ] Add statistics Menu
+- [ ] Add more info button
+- [ ] Make website nicer with css
