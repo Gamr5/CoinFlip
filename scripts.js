@@ -10,6 +10,7 @@ var onRuns = 0;
 var maxRuns = 0;
 var odds = 1; //odds of getting that streak
 const flips = [];
+var outputImage = document.getElementById("coin-img")
 
 function run() {
   current = states[Math.floor(Math.random() * states.length)];
@@ -36,8 +37,10 @@ function run() {
 
   if (current == 0) {
     tranlatedType = "heads";
+    outputImage.src = "/images/heads.png"
   } else if (current == 1) {
     tranlatedType = "tails";
+    outputImage.src = "/images/tails.jpg"
   }
 
   if (streak > maxStreak) {
