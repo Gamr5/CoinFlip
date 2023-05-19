@@ -13,9 +13,12 @@
 
 </head>
 
-<body>
+<body onload="refreshVersion()">
     <header>
-        <p id="versioninfo">Version: 1.0.30</p>
+        <div id="verinfo">
+        <p>Version: 1.0.26</p>
+        <p id="javascriptVer"></p>
+    </div>
         <h1>Coin Flips</h1>
         <h2>Does fun things with coin flips</h2>
     </header>
@@ -29,6 +32,8 @@
     <br>
     <br>
     <button onclick="resetStreak()">Reset session longest streak</button>
+    <br>
+    <button onclick="resetAllStreak()">Reset all time longest streak (CANNOT BE UNDONE)</button>
     <p id="reset-box"></p>
     <a href="https://github.com/Gamr5/coin-flip" id="github-link"><img src="https://gamr5.github.io/coin-flip/images/github.png" alt="GitHub Logo" id="github-link-image"></a>
 </body>
