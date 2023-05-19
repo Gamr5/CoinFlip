@@ -10,7 +10,7 @@ Thank you for taking a look at my website's GitHub! This webiste was made by me 
 - [x] Add option to flip multiple times (Apr 10, 2023)
 - [x] Improve option to flip multiple times (Apr 10, 2023)
 - [x] Link GitHub from website
-- [ ] Save max streak in cookies
+- [x] Save max streak in cookies
 - [ ] Add total coin flips in cookies
 - [ ] Add statistics Menu
 - [ ] Add more info button
