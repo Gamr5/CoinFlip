@@ -37,10 +37,10 @@ function run() {
 
   if (current == 0) {
     tranlatedType = "heads";
-    outputImage.src = "/images/heads.png"
+    outputImage.src = "https://gamr5.github.io/coin-flip/images/heads.png"
   } else if (current == 1) {
     tranlatedType = "tails";
-    outputImage.src = "/images/tails.jpg"
+    outputImage.src = "https://gamr5.github.io/coin-flip/images/tails.jpg"
   }
 
   if (streak > maxStreak) {
