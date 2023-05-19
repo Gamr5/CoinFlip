@@ -11,6 +11,27 @@ var maxRuns = 0;
 var odds = 1; //odds of getting that streak
 const flips = [];
 var outputImage = document.getElementById("coin-img")
+var allBest = 0
+
+function refreshVersion () {
+  document.getElementById("javascriptVer").innerHTML = "JavaScript Version: 1.1.2"
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 function run() {
   current = states[Math.floor(Math.random() * states.length)];
@@ -34,12 +55,10 @@ function run() {
     streakType = current;
     streak = streak + 1;
   }
-
+  translatedType = Boolean(current) ? "heads" : "tails";
   if (current == 0) {
-    tranlatedType = "heads";
     outputImage.src = "https://gamr5.github.io/coin-flip/images/heads.png"
   } else if (current == 1) {
-    tranlatedType = "tails";
     outputImage.src = "https://gamr5.github.io/coin-flip/images/tails.jpg"
   }
 
@@ -47,11 +66,36 @@ function run() {
     maxStreak = streak;
   }
 
-  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Odds of getting this streak: 1/${odds}`;
-}
+  setAllBest(streak);
 
+  result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest session streak: ${maxStreak}<br>All time longest streak: ${allBest}<br>Odds of getting current streak: 1/${odds}`;
+}
+function setAllBest(cvalue) {
+  allBest = getCookie("allTimeBest");
+  var cookieDur = 365
+  const dateSetCookie = new Date();
+  if (allBest == 0 || streak > allBest) {
+  dateSetCookie.setTime(dateSetCookie.getTime() + (cookieDur*24*60*60*1000));
+  let expires = "expires="+ dateSetCookie.toUTCString();
+  document.cookie = "allTimeBest =" + cvalue + ";" + expires + ";path=/";
+  }
+}
+function resetAllBest(cvalue) {
+  allBest = getCookie("allTimeBest");
+  var cookieDur = 365
+  const dateSetCookie = new Date();
+
+  dateSetCookie.setTime(dateSetCookie.getTime() + (cookieDur*24*60*60*1000));
+  let expires = "expires="+ dateSetCookie.toUTCString();
+  document.cookie = "allTimeBest = 0 ;" + expires + ";path=/";
+
+}
 //multi-run
 function multiRun() {
+  var now1 = new Date();
+  var milliseconds1 = now1.getTime();
+
+
   const flips = []
   maxRuns = document.getElementById("times").value;
   if (maxRuns == null || maxRuns == 0) {
@@ -118,6 +162,9 @@ function multiRun() {
 
   result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>Percentage of flips that were heads: ${flipPercentHeads}%<br>Percentage of flips that were tails: ${flipPercentTails}%`;
 }
+var now2 = new Date();
+var milliseconds2 = now2.getTime();
+console.log(`Total time taken: ${milliseconds2 - milliseconds1}`)
 }
 
 function resetStreak() { //reseting streak
@@ -135,8 +182,32 @@ document.getElementById("reset-box").classList = "red"
     const myTimeout = setTimeout(clearAll, 3000, "reset-box");
   }
 
-  function clearAll(id) {
-    document.getElementById(id).classList = ""
-    document.getElementById(id).innerHTML = ""
+}
+
+function resetAllStreak() {
+  if (confirm("Are you sure you want to reset your all-time best streak?\nTHIS CANNOT BE UNDONE")) {
+    maxStreak = 0;
+    result.innerHTML = `Last coin flip : ${tranlatedType}<br>Current streak: ${streak}<br>Longest streak: ${maxStreak}<br>All-time longest streak: none<br>Odds of getting current streak: 1/${odds}`;
+    
+    // Update the cookie value
+    var cookieDur = 365;
+    const dateSetCookie = new Date();
+    dateSetCookie.setTime(dateSetCookie.getTime() + cookieDur * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + dateSetCookie.toUTCString();
+    document.cookie = "allTimeBest=0; " + expires + "; path=/";
+    
+    document.getElementById("reset-box").innerHTML = "All-time best successfully reset!";
+    document.getElementById("reset-box").classList = "green";
+    const myTimeout = setTimeout(clearAll, 3000, "reset-box");
+  } else {
+    document.getElementById("reset-box").innerHTML = "All-time best reset canceled";
+    document.getElementById("reset-box").classList = "red";
+    const myTimeout = setTimeout(clearAll, 3000, "reset-box");
   }
+}
+
+
+function clearAll(id) {
+  document.getElementById(id).classList = ""
+  document.getElementById(id).innerHTML = ""
 }
